@@ -6,6 +6,8 @@ func fibonacci(_ n: Int) -> Int {
     }
 }
 
-let n = 4
+// TODO: Add dynamic programming example
+
+let n = 5
 let res = fibonacci(n)
 print("\(n)th fibonacci number is: \(res)")
