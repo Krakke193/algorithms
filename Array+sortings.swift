@@ -77,4 +77,22 @@ extension Array where Element: Comparable {
         self = sort(self)
         print(self)
     }
+
+    mutating func quickSort() {
+
+        func sort(_ arr: Array) -> Array {
+            guard arr.count > 1 else { return arr }
+
+            let pivot = Int.random(in: 0..<arr.count)
+
+            let lesser = arr.filter { $0 < arr[pivot] }
+            let equal = arr.filter { $0 == arr[pivot] }
+            let bigger = arr.filter { $0 > arr[pivot] }
+
+            return sort(lesser) + equal + sort(bigger)
+        }
+
+        self = sort(self)
+        print(self)
+    }
 }

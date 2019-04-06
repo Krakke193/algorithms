@@ -4,4 +4,4 @@ var text = (97...122)
 	.map({Character(UnicodeScalar($0))})
 	.shuffled()
 
-big.mergeSort()
+big.quickSort()
