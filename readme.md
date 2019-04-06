@@ -1,0 +1,4 @@
+```bash
+swiftc *.swift
+./main
+```
