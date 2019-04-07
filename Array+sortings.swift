@@ -80,19 +80,38 @@ extension Array where Element: Comparable {
 
     mutating func quickSort() {
 
-        func sort(_ arr: Array) -> Array {
-            guard arr.count > 1 else { return arr }
+        func partition(_ arr: inout Array, low: Int, high: Int) -> (Int, Int) {
+            let pivot = arr[Int.random(in: 0..<arr.count)]
 
-            let pivot = Int.random(in: 0..<arr.count)
+            var smaller = low
+            var equal = low
+            var larger = high
 
-            let lesser = arr.filter { $0 < arr[pivot] }
-            let equal = arr.filter { $0 == arr[pivot] }
-            let bigger = arr.filter { $0 > arr[pivot] }
+            while equal <= larger {
+                if arr[equal] < pivot {
+                    arr.swapAt(equal, smaller)
+                    smaller += 1
+                    equal += 1
+                } else if arr[equal] == pivot {
+                    equal += 1
+                } else {
+                    arr.swapAt(equal, larger)
+                    larger -= 1
+                }
+            }
 
-            return sort(lesser) + equal + sort(bigger)
+            return (smaller, larger)
         }
 
-        self = sort(self)
+        func sort(_ arr: inout Array, low: Int, high: Int) {
+            guard high > low else { return }
+
+            let (equalStart, equalEnd) = partition(&arr, low: low, high: high)
+            sort(&arr, low: low, high: equalStart - 1)
+            sort(&arr, low: equalEnd + 1, high: high)
+        }
+
+        sort(&self, low: 0, high: self.count - 1)
         print(self)
     }
 }
