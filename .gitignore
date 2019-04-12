@@ -1,0 +1,11 @@
+# Ingore all
+*
+
+# Unignore swift
+!*.swift
+
+# Docs
+!*.md
+
+# Ignore file itself
+.gitignore
